@@ -1,0 +1,21 @@
+# Test binary, built with `go test -c`
+*.test
+test/
+main.go
+
+# Dependency directories (remove the comment below to include it)
+vendor/
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# vscode
+.vscode
+
+# jetbrain
+.idea
