@@ -1,14 +1,18 @@
-# Import
+# Slice Util 中文文档
+
+[English](../README.md)|简体中文
+
+# 导入
 
 ```go
 import "github.com/wyb199877/sliceutil"
 ```
 
-# Operation Functions
+# 操作类函数
 
 ## Foreach
 
-Iterate over the elements in the slice
+遍历切片中的元素
 
 ```go
 func Foreach[T any](
@@ -26,7 +30,7 @@ sliceutil.Foreach(sl, func(it int, idx int, s []int) {
 
 ## Map
 
-Conversion of elements in slices
+切片内元素转换
 
 ```go
 func Map[T, R any](
@@ -45,7 +49,7 @@ strs := sliceutil.Map(sl, func(it int, idx int, s []int) string {
 
 ## Filter
 
-Slice element filter
+切片元素过滤器
 
 ```go
 func Filter[T any](
@@ -64,7 +68,7 @@ odds := sliceutil.Filter(sl, func(it int, idx int, s []int) bool {
 
 ## Reduce
 
-Slice element accumulator (no initial value implemented)
+切片元素累加器（未实现初始值）
 
 ```go
 func Reduce[T any](
@@ -81,11 +85,11 @@ sum := sliceutil.Reduce(sl, func(ret int, it int, idx int, s []int) int {
 // sum = 6
 ```
 
-# Search Functions
+# 查找类函数
 
 ## Find
 
-Find the first element that satisfies the condition in the slice
+查找切片内第一个满足条件的元素
 
 ```go
 func Find[T any](
@@ -109,7 +113,7 @@ target, hasFound = sliceutil.Find(sl, func(it int, idx int, s []int) bool {
 
 ## FindIndex
 
-Find the index of the first element that meets the condition in the slice
+查找切片内第一个满足条件元素的索引值
 
 ```go
 func FindIndex[T any](
@@ -133,7 +137,7 @@ index = sliceutil.FindIndex(sl, func(it int, idx int, s []int) bool {
 
 ## IndexOf
 
-Finds the index of the first element that  equal to the target value in the slice
+查找切片内第一个等于目标值元素的索引值
 
 ```go
 func IndexOf[T comparable](slice []T, target T) int
@@ -150,7 +154,7 @@ index = sliceutil.IndexOf(sl, 4)
 
 ## LastIndexOf
 
-Finds the index of the last element that  equal to the target value in the slice
+查找切片内最后一个等于目标值元素的索引值
 
 ```go
 func LastIndexOf[T comparable](slice []T, target T) int
@@ -167,7 +171,7 @@ index = sliceutil.LastIndexOf(sl, 4)
 
 ## Includes
 
-Determine whether there is an element equal to the target value in the slice
+判断切片内是否存在与目标值相等的元素
 
 ```go
 func Includes[T comparable](slice []T, target T) bool
@@ -184,7 +188,7 @@ isExist = sliceutil.Includes(sl, 4)
 
 ## Some
 
-Determine if there is an element in the slice that satisfies the condition
+判断切片内是否存在满足条件的元素
 
 ```go
 func Some[T any](
@@ -208,7 +212,7 @@ isExist = sliceutil.Some(sl, func(it int, idx int, s []int) bool {
 
 ## Every
 
-Determines whether all elements in the slice satisfy the condition
+判断切片内的元素是否均满足条件
 
 ```go
 func Every[T any](
@@ -230,13 +234,13 @@ isEvery = sliceutil.Every(sl, func(it int, idx int, s []int) bool {
 // isEvery = false
 ```
 
-# Modification Functions
+# 修改类函数
 
-**Functions under this heading operate directly on the memory space to which the slice address points**
+**这一类的函数均直接操作切片地址指向的内存空间**
 
 ## Insert
 
-Insert elements at the position of index in the slice
+向切片内指定索引处插入元素
 
 ```go
 func Insert[T any](sp *[]T, index int, items ...T)
@@ -250,7 +254,7 @@ sliceutil.Insert(&sl, 1, 2)
 
 ## Remove
 
-Removes an element from a slice at the position of index (make sure there is an element at that position)
+从切片中移除指定索引的元素（请确保该位置有元素存在）
 
 ```go
 func Remove[T any](sp *[]T, index int)
@@ -264,7 +268,7 @@ sliceutil.Remove(&sl, 1)
 
 ## Push
 
-Insert elements at the end of slice
+向切片尾部插入元素
 
 ```go
 func Push[T any](sp *[]T, items ...T)
@@ -278,7 +282,7 @@ sliceutil.Push(&sl, 4)
 
 ## Pop
 
-Pops up and returns the last element of a slice (do not operate on empty slices)
+弹出并返回切片的最后一个元素（请勿对空切片操作）
 
 ```go
 func Pop[T any](sp *[]T) T
@@ -292,7 +296,7 @@ last := sliceutil.Pop(&sl)
 
 ## Unshift
 
-Insert elements at the start of slice
+向切片首部插入元素
 
 ```go
 func Unshift[T any](sp *[]T, items ...T)
@@ -306,7 +310,7 @@ sliceutil.Unshift(&sl, 1)
 
 ## Shift
 
-Pops up and returns the first element of a slice (do not operate on empty slices)
+弹出并返回切片的第一个元素（请勿对空切片操作）
 
 ```go
 func Shift[T any](sp *[]T) T
@@ -318,11 +322,11 @@ first := sliceutil.Shift(&sl)
 // first = 1, sl = [2 3]
 ```
 
-# Reversal functions
+# 反转类函数
 
 ## Reverse
 
-Reverse the order of the elements in the slice (only copy, no memory space operation)
+反转切片内的元素顺序，**仅拷贝，不操作内存空间**
 
 ```go
 func Reverse[T any](slice []T) []T
@@ -336,7 +340,7 @@ sl = sliceutil.Reverse(sl)
 
 ## ReverseSelf
 
-Reverse the order of the elements in the slice **(operate the memory space)**
+反转切片内的元素顺序，**直接操作内存空间**
 
 ```go
 func ReverseSelf[T any](slice []T)
@@ -348,11 +352,11 @@ sliceutil.ReverseSelf(sl)
 // sl = [3 2 1]
 ```
 
-# Conversion functions
+# 转换类函数
 
 ## ToMap
 
-Convert slice to map
+将切片转换为 map
 
 ```go
 func ToMap[T any, K comparable, V any](
