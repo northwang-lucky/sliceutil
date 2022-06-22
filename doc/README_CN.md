@@ -1,6 +1,6 @@
 # Slice Util 中文文档
 
-[English](../README.md)|简体中文
+[English](../README.md) | 简体中文
 
 # 导入
 
