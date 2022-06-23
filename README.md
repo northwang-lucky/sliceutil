@@ -379,3 +379,65 @@ mp := sliceutil.ToMap(sl, func(it string) string {
 })
 // mp = map[string]string{"A":"a", "B":"b", "C":"c"}
 ```
+
+## Copy Functions
+
+### Copy
+
+Copy slice
+
+```go
+func Copy[T any](slice []T) []T
+```
+
+```go
+sl := []int{1, 2, 3, 4}
+copied := sliceutil.Copy(sl)
+copied[0] = 99
+// sl = [1 2 3 4] copied = [99 2 3 4]
+```
+
+### Cut
+
+Cut, return a copy
+
+```go
+func Cut[T any](slice []T, start int, end int) []T
+```
+
+```go
+sl := []int{1, 2, 3, 4}
+cut := sliceutil.Cut(sl, 1, 3)
+cut[0] = 99
+// sl = [1, 2, 3, 4] cut = [99, 3]
+```
+
+### CutFromFirst
+
+Cut from first element, return a copy
+
+```go
+func CutFromFirst[T any](slice []T, end int) []T
+```
+
+```go
+sl := []int{1, 2, 3, 4}
+cut := sliceutil.CutFromFirst(sl, 3)
+cut[0] = 99
+// sl = [1 2 3 4] cut = [99 2 3]
+```
+
+### CutToLast
+
+Cut to last element, return a copy
+
+```go
+func CutToLast[T any](slice []T, start int) []T
+```
+
+```go
+sl := []int{1, 2, 3, 4}
+cut := sliceutil.CutToLast(sl, 1)
+cut[0] = 99
+// sl = [1 2 3 4] cut = [99 3 4]
+```
